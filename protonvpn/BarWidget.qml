@@ -86,7 +86,7 @@ Item {
         customTextColor: Color.resolveColorKeyOptional(root.activeColor)
 
         forceOpen: !root.isBarVertical && root.displayMode === "alwaysShow"
-        forceClose: root.isBarVertical || root.displayMode === "alwaysHide"
+        forceClose: root.isBarVertical || root.displayMode === "alwaysHide" || !root.pillText
 
         onClicked: {
             if (pluginApi)
