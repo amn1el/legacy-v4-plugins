@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
 import qs.Commons
 import qs.Services.UI
@@ -40,8 +41,33 @@ NIconButton {
     readonly property string iconColorKey: cfg.iconColor ?? defaults.iconColor ?? "none"
     readonly property color iconColor: Color.resolveColorKey(iconColorKey)
 
-    // ===== VISIBILITY =====
-    visible: shouldShow
+    visible: shouldShow || opacity > 0
+    opacity: shouldShow ? 1.0 : 0.0
+
+    Layout.preferredWidth: shouldShow ? -1 : 0
+    Layout.preferredHeight: shouldShow ? -1 : 0
+    Layout.margins: shouldShow ? -1 : 0
+
+    Behavior on opacity {
+        NumberAnimation {
+            duration: Style.animationNormal
+            easing.type: Easing.OutCubic
+        }
+    }
+    
+    Behavior on Layout.preferredWidth {
+        NumberAnimation {
+            duration: Style.animationNormal
+            easing.type: Easing.InOutCubic
+        }
+    }
+    
+    Behavior on Layout.preferredHeight {
+        NumberAnimation {
+            duration: Style.animationNormal
+            easing.type: Easing.InOutCubic
+        }
+    }
 
     // ===== APPEARANCE =====
     icon: "usb"
@@ -100,7 +126,6 @@ NIconButton {
     // ===== CONTEXT MENU =====
     NPopupContextMenu {
         id: contextMenu
-
         model: [
             {
                 "label": pluginApi?.tr("context.open"),

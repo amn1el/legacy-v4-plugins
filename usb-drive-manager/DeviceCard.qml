@@ -92,14 +92,14 @@ Rectangle {
                 width: statusLabel.implicitWidth + Style.marginS * 2
                 height: statusLabel.implicitHeight + 4
                 radius: height / 2
-                color: Color.mPrimaryContainer
+                color: Color.mPrimary
 
                 NText {
                     id: statusLabel
                     anchors.centerIn: parent
                     text: pluginApi?.tr("device.mounted")
                     pointSize: Style.fontSizeXXS
-                    color: Color.mOnPrimaryContainer
+                    color: Color.mOnPrimary
                     font.weight: Font.Medium
                 }
             }
@@ -127,7 +127,7 @@ Rectangle {
                 Layout.fillWidth: true
                 height: Style.marginXS
                 radius: height / 2
-                color: Color.mOutlineVariant
+                color: Color.mOutline
 
                 Rectangle {
                     width: parent.width * Math.min((device?.usedPercent ?? 0) / 100, 1)
