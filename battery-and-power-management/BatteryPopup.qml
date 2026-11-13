@@ -55,7 +55,7 @@ Item {
                     Layout.rightMargin: Style.marginS
 
                     NIcon {
-                        icon: (root.mainWidget?.batStatus === pluginApi?.tr("battery.status_charging") || root.mainWidget?.batStatus === pluginApi?.tr("battery.status_full")) ? "battery-charging" : "battery-4"
+                        icon: root.mainWidget?.getBatteryIcon()
                         pointSize: Style.fontSizeXL
                         color: Color.mPrimary
                         Layout.alignment: Qt.AlignHCenter

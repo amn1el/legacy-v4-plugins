@@ -1,22 +1,25 @@
 {
+  "menu": {
+    "settings": "Widget-instellingen"
+  },
   "settings": {
-    "active_color_description": "Color of the status indicator when active (running)",
-    "active_color_label": "Active Indicator Color",
+    "active_color_description": "Kleur van de statusindicator wanneer actief (draaiend)",
+    "active_color_label": "Kleur actieve indicator",
     "current_value": "Geselecteerd: {value} ms",
     "default_network_description": "Standaardnetwerk dat gebruikt moet worden bij het uitvoeren van images",
     "default_network_label": "Standaardnetwerk",
     "general": "Algemeen",
-    "icon_color_description": "Change the color of the Bar widget icon",
-    "icon_color_label": "Icon Color",
-    "inactive_color_description": "Color of the status indicator when inactive (stopped)",
-    "inactive_color_label": "Inactive Indicator Color",
+    "icon_color_description": "Verander de kleur van het Bar-widgeticoon",
+    "icon_color_label": "Icoonkleur",
+    "inactive_color_description": "Kleur van de statusindicator wanneer inactief (gestopt)",
+    "inactive_color_label": "Kleur inactieve indicator",
     "refresh_interval_description": "Hoe vaak de plugin de containerstatus controleert",
     "refresh_interval_label": "Vernieuwingsinterval",
-    "status_state_always": "Always show",
-    "status_state_description": "Choose how to display the status indicator dot",
-    "status_state_hidden": "Hide completely",
-    "status_state_label": "Status State",
-    "status_state_running_only": "Show when running",
+    "status_state_always": "Altijd tonen",
+    "status_state_description": "Kies hoe de statusindicatorpunt moet worden weergegeven",
+    "status_state_hidden": "Volledig verbergen",
+    "status_state_label": "Statusweergave",
+    "status_state_running_only": "Tonen tijdens draaien",
     "title": "Container Manager Instellingen"
   },
   "tooltip": {

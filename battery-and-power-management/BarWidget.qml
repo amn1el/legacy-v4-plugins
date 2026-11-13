@@ -22,9 +22,38 @@ Item {
     readonly property real barFontSize: Style.getBarFontSizeForScreen(root.screenName)
     readonly property string fixedFont: Settings.data?.ui?.fontFixed ?? "monospace"
 
+    property color profileBackgroundColor: {
+        if (mouseArea.containsMouse) {
+            return Color.mHover;
+        }
+
+        if (root.batStatus === pluginApi.tr("battery.status-charging")) {
+            return Color.mPrimary;
+        }
+
+        if (root.colorizeByProfile) {
+            if (root.currentProfile === "power-saver") return root.colorPowerSaver;
+            if (root.currentProfile === "performance") return root.colorPerformance;
+        }
+
+        return Style.capsuleColor;
+    }
+
+    property color profileForegroundColor: {
+        if (mouseArea.containsMouse || root.batStatus === pluginApi.tr("battery.status-charging")) {
+            return Color.mOnPrimary;
+        }
+        
+        if (root.colorizeByProfile && (root.currentProfile === "power-saver" || root.currentProfile === "performance")) {
+            return Color.mOnPrimary;
+        }
+        
+        return Color.mOnSurface;
+}
+
     property int batPercent: 0
     property real wattNum: 0.0
-    property string batStatus: pluginApi.tr("battery.status_unknown")
+    property string batStatus: pluginApi.tr("battery.status-unknown")
     property string timeRemaining: "..."
     
     property string currentProfile: "balanced"
@@ -34,6 +63,46 @@ Item {
     readonly property real contentHeight: capsuleHeight
     implicitWidth: contentWidth
     implicitHeight: Style.barHeight
+
+    property bool colorizeByProfile:
+        pluginApi?.pluginSettings?.colorizeByProfile ??
+        pluginApi?.manifest?.metadata?.defaultSettings?.colorizeByProfile ??
+        true
+
+    property string colorPowerSaver:
+        pluginApi?.pluginSettings?.colorPowerSaver ??
+        pluginApi?.manifest?.metadata?.defaultSettings?.colorPowerSaver ??
+        Color.mSecondary
+
+    property string colorPerformance:
+        pluginApi?.pluginSettings?.colorPerformance ??
+        pluginApi?.manifest?.metadata?.defaultSettings?.colorPerformance ??
+        Color.mError
+
+    property bool showProfile:
+        pluginApi?.pluginSettings?.showProfile ??
+        pluginApi?.manifest?.metadata?.defaultSettings?.showProfile ??
+        true
+
+    property bool showBalancedIcon:
+        pluginApi?.pluginSettings?.showBalancedIcon  ??
+        pluginApi?.manifest?.metadata?.defaultSettings?.showBalancedIcon ??
+        false
+
+    function getBatteryIcon() {
+        if (root.batStatus === pluginApi.tr("battery.status-charging")) {
+            return "battery-charging";
+        }
+        if (root.batStatus === pluginApi.tr("battery.status-full")) {
+            return "battery-charging-2";
+        }
+        
+        if (root.batPercent >= 86) return "battery-4";
+        if (root.batPercent >= 56) return "battery-3";
+        if (root.batPercent >= 31) return "battery-2";
+        if (root.batPercent >= 11) return "battery-1";
+        return "battery";
+    }
 
     // ===== Helpers =====
 
@@ -194,11 +263,11 @@ Item {
 
             root.batPercent = cap;
             
-            if (statusRaw === "Charging") root.batStatus = pluginApi.tr("battery.status_charging");
-            else if (statusRaw === "Full") root.batStatus = pluginApi.tr("battery.status_full");
-            else if (statusRaw === "Discharging") root.batStatus = pluginApi.tr("battery.status_discharging");
-            else if (statusRaw === "Not charging") root.batStatus = pluginApi.tr("battery.status_not_charging");
-            else root.batStatus = pluginApi.tr("battery.status_unknown");
+            if (statusRaw === "Charging") root.batStatus = pluginApi.tr("battery.status-charging");
+            else if (statusRaw === "Full") root.batStatus = pluginApi.tr("battery.status-full");
+            else if (statusRaw === "Discharging") root.batStatus = pluginApi.tr("battery.status-discharging");
+            else if (statusRaw === "Not charging") root.batStatus = pluginApi.tr("battery.status-not-charging");
+            else root.batStatus = pluginApi.tr("battery.status-unknown");
 
             root.wattNum = rate / 1000000.0;
         }
@@ -214,9 +283,9 @@ Item {
         
         color: mouseArea.containsMouse 
             ? Color.mHover 
-            : (root.batStatus === pluginApi.tr("battery.status_charging") ? Color.mPrimary : Style.capsuleColor)
+            : (root.batStatus === pluginApi.tr("battery.status-charging") ? Color.mPrimary : root.profileBackgroundColor)
 
-        border.color: root.batStatus === pluginApi.tr("battery.status_charging") ? Color.mPrimary : Style.capsuleBorderColor
+        border.color: root.batStatus === pluginApi.tr("battery.status-charging") ? Color.mPrimary : Style.capsuleBorderColor
         border.width: Style.capsuleBorderWidth
 
         RowLayout {
@@ -225,16 +294,27 @@ Item {
             spacing: Style.marginS
 
             NIcon {
-                icon: (root.batStatus === pluginApi.tr("battery.status_charging") || root.batStatus === pluginApi.tr("battery.status_full")) ? "battery-charging" : "battery-4"
-                color: mouseArea.containsMouse || root.batStatus === pluginApi.tr("battery.status_charging") ? Color.mOnPrimary : Color.mOnSurface
+                icon: root.getBatteryIcon()
+                color: root.profileForegroundColor
             }
 
             NText {
-                text: root.batPercent + "% " + (root.batStatus === pluginApi.tr("battery.status_charging") ? "+" : "-") + root.wattNum.toFixed(1) + "W"
+                text: root.batPercent + "% " + (root.batStatus === pluginApi.tr("battery.status-charging") ? "+" : "-") + root.wattNum.toFixed(1) + "W"
                 pointSize: barFontSize
                 font.family: root.fixedFont
                 font.weight: Font.Bold
-                color: mouseArea.containsMouse || root.batStatus === pluginApi.tr("battery.status_charging") ? Color.mOnPrimary : Color.mOnSurface
+                color: root.profileForegroundColor
+            }
+
+            NIcon {
+                visible: root.showProfile
+                icon: {
+                    if (root.currentProfile === "power-saver") return "leaf";
+                    if (root.currentProfile === "performance") return "gauge";
+                    if (root.showBalancedIcon) return "scale";
+                    return "";
+                }
+                color: root.profileForegroundColor
             }
         }
     }
@@ -244,10 +324,43 @@ Item {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
-        onClicked: {
-            root.updatePowerProfile();
-            thresholdLoader.reload();
-            pluginApi.openPanel(root.screen, root);
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+
+        onClicked: (mouse) => {
+            if (mouse.button === Qt.RightButton) {
+                PanelService.showContextMenu(contextMenu, root, screen)
+            } else {
+                root.updatePowerProfile();
+                thresholdLoader.reload();
+                pluginApi.openPanel(root.screen, root);
+            }
         }
     }
+
+    // ===== CONTEXT MENU ====
+    NPopupContextMenu {
+        id: contextMenu
+
+        model: [
+            {
+                "label": pluginApi.tr("settings.widget-settings"),
+                "action": "settings",
+                "icon": "settings"
+            }
+        ]
+
+        onTriggered: action => {
+            contextMenu.close()
+            PanelService.closeContextMenu(screen)
+
+            if (action === "settings") {
+                if (pluginApi?.manifest) {
+                    BarService.openPluginSettings(screen, pluginApi.manifest)
+                }
+            }
+        }
+    }
+
+    
 }

@@ -98,6 +98,13 @@ Item {
       ["niri-screensaver-launch", "kill"]
     )
   }
+  // Quiet running-state probe for the bar widget's smart left-click toggle:
+  // exit 0 if running, 1 if not. Uses the standard launcher on PATH (a fully
+  // custom launcherCommand is rare and the launcher name is stable), so the
+  // widget can decide whether a click should launch or stop.
+  function _statusArgv() {
+    return ["niri-screensaver-launch", "is-running"]
+  }
 
   // ----- Shell config writer -----
   function _renderShellConfig() {
@@ -119,9 +126,11 @@ Item {
       "NOW_PLAYING_DURATION=\"" + _shEscape(s.nowPlayingDuration || 3) + "\"",
       "LOGO_FILE=\"" + _shEscape(s.logoPath) + "\"",
       "CURSOR_HIDE=\"" + bool(s.cursorHide) + "\"",
+      "CURSOR_WARP=\"" + bool(s.cursorWarp) + "\"",
       "DISMISS_ON_KEY=\"" + bool(s.dismissOnKey) + "\"",
       "RANDOM_LOGO=\"" + bool(s.randomLogo) + "\"",
       "LOGO_DIR=\"" + _shEscape(s.logoDir) + "\"",
+      "MULTI_MONITOR_MODE=\"" + _shEscape(s.multiMonitorMode || "independent") + "\"",
       ""
     ].join("\n")
   }

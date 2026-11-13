@@ -16,8 +16,13 @@ and rendered in a fullscreen Alacritty surface.
   tears down cleanly when Noctalia's lock fires (avoids burning CPU under the
   lock surface). Only writes to hook slots that are empty or already hold the
   plugin's command — never clobbers a hook you authored manually.
-- **Bar widget**: click to trigger; right-click for stop / toggle enabled /
-  open settings. Recolors to follow the active Noctalia theme.
+- **Bar widget**: left-click is a smart toggle — launches the screensaver if
+  it's stopped, stops it if it's running (via a quiet `niri-screensaver-launch
+  is-running` probe). Right-click opens a menu: **Trigger now**, **Stop**,
+  **Quit** (stop *and* disable so idle won't relaunch it), **Reload** (stop,
+  restart the Noctalia shell so the systray reappears, and re-enable),
+  **Toggle enabled**, and **Open settings**. Recolors to follow the active
+  Noctalia theme.
 - **Settings tab** for idle threshold, effect include/exclude lists,
   fade-in/out **dropdowns** populated from `niri-screensaver-ctl effects`,
   a **logo file dropdown** that auto-refreshes from your logo directory,
@@ -70,6 +75,7 @@ re-syncs the idle hook.
 | Exclude effects (CSV) | text | `EXCLUDE_EFFECTS` | `dev_worm` |
 | Fade-in effect | dropdown | `FADE_IN_EFFECT` | _empty_ |
 | Fade-out effect | dropdown | `FADE_OUT_EFFECT` | _empty_ |
+| Multi-monitor mode | dropdown | `MULTI_MONITOR_MODE` | `independent` |
 | Show clock between effects | toggle | `SHOW_CLOCK` | `false` |
 | Clock format (strftime) | text | `CLOCK_FORMAT` | `%H:%M` |
 | Show now-playing track | toggle | `SHOW_NOW_PLAYING` | `false` |
@@ -83,7 +89,7 @@ installed `share/logos/`) and auto-refreshes when files appear or
 disappear; the fade lists come from `niri-screensaver-ctl effects`.
 
 Settings not surfaced in the UI (`FRAME_RATE`, `CLOCK_DURATION`,
-`CLOCK_FONT`, `CURSOR_HIDE`, `DISMISS_ON_KEY`) can be edited directly in
+`CLOCK_FONT`, `CURSOR_HIDE`, `CURSOR_WARP`, `DISMISS_ON_KEY`) can be edited directly in
 `~/.config/niri-screensaver/config` — they round-trip through the plugin on
 next reload.
 

@@ -1,4 +1,7 @@
 {
+  "menu": {
+    "settings": "Widget settings"
+  },
   "settings": {
     "active_color_description": "Color of the status indicator when active (running)",
     "active_color_label": "Active Indicator Color",

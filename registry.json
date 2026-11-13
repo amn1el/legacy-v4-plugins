@@ -127,20 +127,20 @@
     {
       "id": "battery-and-power-management",
       "name": "Battery & Power Management Plugin",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "official": false,
       "author": "Piero-93",
       "description": "A lightweight, efficient battery status bar widget and interactive control popup. This plugin displays real-time battery diagnostics (including dynamic power draw in Watts) and provides desktop controls to switch system power profiles or adjust hardware battery charge thresholds safely without needing root privileges.",
       "repository": "https://github.com/noctalia-dev/noctalia-plugins",
       "minNoctaliaVersion": "4.0.0",
-      "license": "MIT",
+      "license": "GPLv3",
       "tags": [
         "Bar",
         "System",
         "Indicator",
         "Utility"
       ],
-      "lastUpdated": "2026-05-22T12:55:20+02:00"
+      "lastUpdated": "2026-06-13T21:56:57+02:00"
     },
     {
       "id": "battery-monitor-plus",
@@ -163,7 +163,7 @@
     {
       "id": "battery-threshold",
       "name": "Battery Threshold Control",
-      "version": "1.2.4",
+      "version": "1.2.5",
       "official": false,
       "author": "Wilfred Mallawa",
       "description": "Set the battery threshold for laptop batteries to extend battery lifespan",
@@ -175,7 +175,7 @@
         "Panel",
         "System"
       ],
-      "lastUpdated": "2026-05-19T04:42:51+03:00"
+      "lastUpdated": "2026-06-12T22:50:59+02:00"
     },
     {
       "id": "calendar-widget",
@@ -298,7 +298,7 @@
     {
       "id": "coin-flip",
       "name": "Coin Flipper",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "official": false,
       "author": "DanisDeveloper",
       "description": "Simple bar widget with notification about result",
@@ -307,7 +307,7 @@
       "tags": [
         "Bar"
       ],
-      "lastUpdated": "2026-04-13T17:37:28+02:00"
+      "lastUpdated": "2026-06-12T22:45:13+02:00"
     },
     {
       "id": "color-scheme-creator",
@@ -391,7 +391,7 @@
     {
       "id": "daily-wallpaper",
       "name": "Daily Wallpaper",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "official": false,
       "author": "DigitallyRefined",
       "description": "Fetches a new daily wallpaper from Bing or NASA",
@@ -403,7 +403,7 @@
         "Fun",
         "Utility"
       ],
-      "lastUpdated": "2026-05-25T15:43:49+01:00"
+      "lastUpdated": "2026-06-12T23:02:02+02:00"
     },
     {
       "id": "deskvis",
@@ -525,7 +525,7 @@
     {
       "id": "giphy-search",
       "name": "Giphy Search",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "official": false,
       "author": "Sergio Mendolia",
       "description": "Search for GIFs on Giphy from the Launcher.",
@@ -537,7 +537,7 @@
         "Utility",
         "Fun"
       ],
-      "lastUpdated": "2026-04-02T23:32:45+02:00"
+      "lastUpdated": "2026-06-12T23:11:05+02:00"
     },
     {
       "id": "git-companion",
@@ -596,7 +596,7 @@
     {
       "id": "hassio",
       "name": "Home Assistant",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "official": false,
       "author": "Pozzoo",
       "description": "Monitor and control Home Assistant entities from the bar. Requires qt6-websockets.",
@@ -608,7 +608,7 @@
         "Panel",
         "Utility"
       ],
-      "lastUpdated": "2026-05-10T15:26:46+03:00"
+      "lastUpdated": "2026-06-12T23:19:35+02:00"
     },
     {
       "id": "hello-world",
@@ -777,7 +777,7 @@
     {
       "id": "keybind-cheatsheet",
       "name": "Keybind Cheatsheet",
-      "version": "3.7.3",
+      "version": "3.7.4",
       "official": false,
       "author": "blacku",
       "description": "Universal keyboard shortcuts keymap that automatically detects and displays keybindings for Hyprland, Niri, or MangoWC compositors.",
@@ -793,12 +793,12 @@
         "Niri",
         "MangoWC"
       ],
-      "lastUpdated": "2026-05-25T18:50:01+02:00"
+      "lastUpdated": "2026-07-02T21:00:58+02:00"
     },
     {
       "id": "khal-agenda-widget",
       "name": "Khal Agenda Info",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "official": false,
       "author": "Simon",
       "description": "Shows khal agenda.",
@@ -809,7 +809,7 @@
         "Desktop",
         "System"
       ],
-      "lastUpdated": "2026-04-14T21:58:06+02:00"
+      "lastUpdated": "2026-06-12T23:29:19+02:00"
     },
     {
       "id": "kubectl-ctx",
@@ -948,7 +948,7 @@
     {
       "id": "mini-docker",
       "name": "Mini Docker",
-      "version": "2.1.3",
+      "version": "2.2.0",
       "official": false,
       "author": "MannuVilasara",
       "description": "Manage Docker containers, images, volumes & networks",
@@ -960,7 +960,7 @@
         "Panel",
         "Development"
       ],
-      "lastUpdated": "2026-05-28T02:11:47+05:00"
+      "lastUpdated": "2026-06-10T21:22:14+05:00"
     },
     {
       "id": "mirror-mirror",
@@ -1244,7 +1244,7 @@
     {
       "id": "niri-screensaver",
       "name": "Niri Screensaver",
-      "version": "0.5.9",
+      "version": "0.8.0",
       "official": false,
       "author": "jfreed-dev",
       "description": "Idle-aware terminal screensaver for niri, driven by TerminalTextEffects.",
@@ -1256,7 +1256,7 @@
         "Utility",
         "Niri"
       ],
-      "lastUpdated": "2026-05-22T19:50:34-04:00"
+      "lastUpdated": "2026-07-22T11:17:14-04:00"
     },
     {
       "id": "niri-urgent-on-notification",
@@ -1295,7 +1295,7 @@
     {
       "id": "noctalia-calculator",
       "name": "Calculator",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "official": false,
       "author": "pir0c0pter0",
       "description": "Theme-aware calculator plugin for Noctalia on Niri with bar widget, floating panel and keyboard support",
@@ -1307,7 +1307,7 @@
         "Panel",
         "Utility"
       ],
-      "lastUpdated": "2026-04-30T16:56:05+02:00"
+      "lastUpdated": "2026-06-12T22:39:37+02:00"
     },
     {
       "id": "noctalia-supergfxctl",
@@ -1563,7 +1563,7 @@
     {
       "id": "privacy-indicator",
       "name": "Privacy Indicator",
-      "version": "1.2.12",
+      "version": "1.2.13",
       "official": true,
       "author": "Noctalia Team",
       "description": "A privacy indicator widget that shows when microphone, camera or screen sharing is active.",
@@ -1575,7 +1575,7 @@
         "Privacy",
         "Indicator"
       ],
-      "lastUpdated": "2026-04-21T01:35:58+02:00"
+      "lastUpdated": "2026-06-12T22:31:50+02:00"
     },
     {
       "id": "protonvpn",
@@ -1941,6 +1941,24 @@
         "Gaming"
       ],
       "lastUpdated": "2026-04-25T15:46:23+03:00"
+    },
+    {
+      "id": "thinkpad-fan",
+      "name": "ThinkPad - Fan & Thermal Control",
+      "version": "1.1.0",
+      "official": false,
+      "author": "Piero-93",
+      "description": "Monitors system temperatures and provides manual overrides for fan speed profiles via sysfs.",
+      "repository": "https://github.com/noctalia-dev/noctalia-plugins",
+      "minNoctaliaVersion": "4.0.0",
+      "license": "GPLv3",
+      "tags": [
+        "Bar",
+        "Indicator",
+        "System",
+        "Utility"
+      ],
+      "lastUpdated": "2026-06-22T15:24:48+02:00"
     },
     {
       "id": "timer",
